@@ -104,4 +104,32 @@ router.get('/',async(req,res)=>{
          }
      })
 
+
+     router.post("/dogs", async (req, res) => {
+      try{
+    
+        const {
+          name, height,weight,life_span,temperament,image
+                 //      temperaments: e.temperament && e.temperament.split(", ")
+        } = req.body;
+      
+        let dogCreated = await Dog.create({
+          name, 
+          height,
+          weight,
+          life_span,
+          image,
+          created,
+        });
+      
+        let temperamentDb = await Temperament.findAll({
+          where: { name: temperament },
+        });
+        await dogCreated.addTemperament(temperamentDb); // se agrega el await para esperar que se encuentren los temperaments
+        res.send("El Perrito ha sido creado con exito");
+      }
+      catch(error){
+        console.log("Se presento un error en el Post", error)
+      }
+    });
 module.exports = router;

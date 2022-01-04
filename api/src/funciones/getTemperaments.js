@@ -21,7 +21,7 @@ async function getAllDataAPI() {
          created:e.created
     };
   });
-console.log('aqui todos los datos', allData)
+
   return allData;
 }
 
@@ -49,8 +49,7 @@ async function getAllTemperament() {
       temperamentSinRepetir.push(el);
     }
   });
-  console.log('estos son los temperamentos sin repetir',temperamentSinRepetir)
-  return temperamentSinRepetir;
+    return temperamentSinRepetir;
 }
 
 module.exports = {
