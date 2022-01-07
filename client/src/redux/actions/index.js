@@ -3,7 +3,7 @@ export const GET_DOGS="get_dogs"
 
 export  function getDogs(){
     return async function(dispatch){
-        var json=await axios('http://localhost:3001/Dogs')
+        var json=await axios.get('http://localhost:3001/Dogs')
     
     return dispatch({
         type:'GET_DOGS',
@@ -47,10 +47,45 @@ export function OrderByWeigh(payload){
 export  function getNameDogs(name){
     return async function(dispatch){
         try{
-        var json=await axios('http://localhost:3001/Dogs?name='+ name)
+        var json=await axios.get('http://localhost:3001/Dogs?name='+ name)
     
     return dispatch({
         type:'GET_NAME_DOGS',
+        payload:json.data
+    })
+}catch(error){
+    console.log(error)
+}
+}
+}
+
+export  function getTemperaments(){
+    return async function(dispatch){
+        var json=await axios.get('http://localhost:3001/Temperaments')
+        console.log('yo soy el json deltemperaments', json)
+    
+    return dispatch({
+        type:'GET_TEMPERAMENTS',
+        payload:json.data
+    })
+}
+}
+
+
+export  function postDogs(payload){
+    return async function(dispatch){
+        var json=await axios.post('http://localhost:3001/Dogs',payload)
+         return json;
+}
+}
+
+export function getDetail(id){
+    
+    return async function(dispatch){
+        try{
+        var json=await axios.get('http://localhost:3001/Dogs/'+id)
+     return dispatch({
+        type:'GET_DETAILS',
         payload:json.data
     })
 }catch(error){

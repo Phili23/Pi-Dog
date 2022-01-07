@@ -1,0 +1,10 @@
+.card-container {
+    display: -ms-flex;
+       /*  display: -webkit-flex; */
+        display: flex;
+        grid-template-rows: repeat(4, 200px);
+        grid-auto-flow: column; 
+        grid-row: span 4;
+   
+    
+}

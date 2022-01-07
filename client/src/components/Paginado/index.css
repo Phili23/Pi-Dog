@@ -30,8 +30,9 @@ li {
 }
 
 .pag-btn:hover {
-    background-color: black;
-    color:rgb(255, 80, 109)
+    text-align: center;
+    padding: 5%;
+    margin-top: 75%;
 } 
 .paginacion {
 	margin:20px 0;

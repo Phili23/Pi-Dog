@@ -4,7 +4,8 @@ import { getDogs,filterCreated, OrderByBreeds, OrderByWeigh} from '../../redux/a
 import {Link} from "react-router-dom"
 import Card from "../Card/index.jsx";
 import Paginado from "../Paginado/index.jsx";
-import SearchBar from "../SearchBar/index.js";
+import SearchBar from '../SearchBar/index'
+import './index.css'
 
 
 export default function Home() {
@@ -18,7 +19,7 @@ export default function Home() {
     indexOfFirstDogs,
     indexOfLastDogs
   );
-  const length = allDogs?.length;
+  /* const length = allDogs?.length; */
   //1-----0------15
   //2-----16-----31
   const paginado = (pageNumber) => {
@@ -88,14 +89,17 @@ return(
      allDogs={allDogs.length}
     paginado={paginado}/>
 
-    <SearchBar/>    
-
+     <SearchBar/>    
+   
     { currentDogs?.map((el)=>{
        return(
-       <Link to={'/home'+el.id}>
-      <Card   name={el.name}image={el.image} temperament={el.temperament} weight={el.weight}/>
+       <Link to={'/home'+el.id} key={el.id}>
+         <div className="card-container ">
+      <Card    name={el.name} img={el.img? el.img:el.image} temperament={el.temperament} weight_min={el.weight_min} weight_max={el.weight_max}/>
+      </div>
       </Link>)
       })}
+      
       </div>
       </div>
 

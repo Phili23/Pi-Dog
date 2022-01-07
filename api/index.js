@@ -27,9 +27,9 @@ const services = require("./src/funciones/getTemperaments");
 conn.sync({ force: false }).then(async () => {
   console.log(" Base de datos conectada ");
   // SE PRECARGAN LOS TEMPERAMENTOS EN BASE DE DATOS (DESDE LA API)
-  console.log(" Precargando Temperamentos de API en DB... ");
+ // console.log(" Precargando Temperamentos de API en DB... ");
   let temperamentForAPI = await services.getAllTemperament();
-  console.log('temperamentos, de la db',temperamentForAPI)
+  //console.log('temperamentos, de la db',temperamentForAPI)
   // se crea objeto para usar bulkCreate
   var objTemperamentos = temperamentForAPI
     .map((e) => {
