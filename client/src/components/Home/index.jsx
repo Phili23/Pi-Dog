@@ -17,12 +17,12 @@ export default function Home() {
 
   const allDogs = useSelector((state) => state.dogs); //mapstpatoprops
   const allTemperaments = useSelector((state) => state.temperaments); //mapstpatoprops
-  console.log('yo soy temperamentos del home vengo del reducer', allTemperaments)
- /*  const [temps, setTemps] = useState('All') */
+  
+
   const [force, setForce] = useState('');
   const [order, setOrder] = useState('');
-  const [temps, setTemps] = useState('All')
-  const [weight, setWeight] = useState('Default')
+  const [temps, setTemps] = useState('')
+  const [weight, setWeight] = useState('')
   const [currentPage, setCurrentPage]=useState(1)//primer pagina actual
   const[dogsPerPage,setDogsPerPage]=useState(8)//cuantas razas  por pagina 
   const indexOfLastDogs = currentPage * dogsPerPage; //15
@@ -66,30 +66,37 @@ function handleOrderByBreeds(e) {
 
 
 function handleFilterCreated(e) {
+  e.preventDefault()
   dispatch(filterCreated(e.target.value))
+  setCurrentPage(1)
+  setOrder(`Ordenado ${e.target.value}`)
   
 };
 
-function handleOrderByWeighTMin(e) {
+function handleOrderByWeigh(e) {
   console.log('y ordenado por peso minimo', e.target.value)
   dispatch( OrderByWeigh_Max_to_Min(e.target.value))
   e.preventDefault();
+  setCurrentPage(1)
   setWeight(`Ordenado ${e.target.value}`)
   
 };
 
-function handleTemps(e){
-console.log('yo soy temperamentos, e target.value', e.target.value)
-  setTemps(e.target.value)
-  dispatch(filterByTemperaments(e.target.value))
-
+function handleFilterTemps(e){
+console.log('Temps e target.value', e.target.value)
+  dispatch(filterByTemperaments(e.target.value)) 
+  e.preventDefault();
+   /* setTemps(`Ordenado ${e.target.value}`)  */
+  
+  
 }
 
 /*https://github.com/any-18/PI-Pokemon/blob/main/client/src/components/Home/index.jsx*/
 
 return(
   <div>
-    <Link  to ='/create'><button>Create Dog Breeds</button></Link>
+    <Link  to ='/'><button>Main - Page</button></Link>
+    <Link  to ='/create'><button>Create Dog Breed</button></Link>
     <h1>DOGS BREEDS</h1>
     <button onClick={e=>{handleClick(e)}}>Reload all Dog Breeds</button>
    
@@ -98,28 +105,27 @@ return(
                 <option value="asc">Ascendente</option>
                 <option value="desc">Descendente</option>
     </select>
-    <select  onChange={e=> handleOrderByWeighTMin(e)}>
-        <option>Order By Weight_Min:</option>
-        <option value="Default">Default</option>
+    <select  onChange={e=>handleOrderByWeigh(e)}>
+        <option>Order By Weight_Max:</option>
+        {/* <option value="Default">Default</option> */}
                 <option value="asc">weight_min</option>
+                <option value="desc">weight_max</option>
                 
                 
     </select>
 
     <select onChange={e=>handleFilterCreated(e)}>
                 <option value='All'>All Dogs</option>
-                <option value='Created'>My Dogs</option>
+                <option value='created'>My Dogs</option>
                 <option value='Api'>Api Dogs</option>
             </select>
 
-
-    <select name ="temps"onChange={e=>handleTemps(e)}>
-  
-        <option value="All">All</option>
-         {allTemperaments.map(g => <option key={g.name} value={g.name}>{g.name}</option>)} 
+            {!allTemperaments?<h1>Cargando...</h1>:
+    <select /* name ="temperament" */onChange={e=>handleFilterTemps(e)}>
+        <option value='All'>All temep</option>
+          {allTemperaments.sort().map(g => <option key={g.name} value={g.name}>{g.name}</option>)} 
             
-         </select>       
-          
+         </select>   }
                 
    
 

@@ -19,6 +19,9 @@ const myDogs=useSelector((state)=>state.detail)
 
 return(
     <div>
+         <Link to='/home'>
+            <button>Go to Home</button>
+         </Link>  
         {
             myDogs.length>0?
             <div>
@@ -34,9 +37,7 @@ return(
               
            </div>:<p>Loading...</p>
         }
-        <Link to='/home'>
-            <button>Back</button>
-         </Link>  
+       
      </div>
 )
 }

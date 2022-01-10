@@ -4,7 +4,7 @@ export const GET_DOGS="get_dogs"
 export  function getDogs(){
     return async function(dispatch){
         var json=await axios.get('http://localhost:3001/Dogs')
-        console.log('yo soy el json de getDogs quiero mirar los temps creados', json)
+        
     
     return dispatch({
         type:'GET_DOGS',

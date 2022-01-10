@@ -172,7 +172,7 @@ useEffect(()=>{
         <label>Temperaments</label>
         <select onChange ={(e)=>handleSelectT(e)}>
             
-            {temperaments.map((temp)=>(
+            {temperaments?.map((temp)=>(
                 <option value={temp.name} key={temp.id} >{temp.name}</option>
             ))}
             
