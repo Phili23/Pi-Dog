@@ -24,6 +24,7 @@ async function getAllDataAPI() {
   return allData;
 }
 
+
 async function getAllTemperament() {
   // devuelvo solo los temperamentos
   let allData = await getAllDataAPI();
@@ -51,6 +52,7 @@ async function getAllTemperament() {
   });
     return temperamentSinRepetir;
 }
+
 
 module.exports = {
   getAllDataAPI,

@@ -55,11 +55,14 @@ export default function rootReducer(state=initialState,action){
                  /*  https://github.com/nelsonosorio3/PI-Doggo/blob/b3886666f82fa0d69c3c07bf7fcb860ed8c7020a/client/src/reducer/index.js */
                   
                 
-                   return{
-                    ...state,
-                    dogs: state.dogs.filter(dogs => dogs?.temperaments?.includes(action.payload.temperament.toLowerCase()))
-                  }
-                  
+                 return{
+                  ...state,
+                  dogs: state.allDogs.filter(allDogs => allDogs?.temperaments?.includes(action.payload.temperament))
+                }
+         
+
+
+                
                     case 'ORDER_BY_WEIGHT_MIN_TO_MAX':
                       return{
                         ...state,

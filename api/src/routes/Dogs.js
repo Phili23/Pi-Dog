@@ -108,7 +108,7 @@ router.get('/',async(req,res)=>{
 
  
 
-     router.post("/", async (req, res) => {
+   /*   router.post("/", async (req, res) => {
       try{
     
         
@@ -134,16 +134,51 @@ router.get('/',async(req,res)=>{
         img,
         created,
       });
-    console.log('esto es lo HA creado', dogCreated)
+   
       let temperamentDb = await Temperament.findAll({
         where: { name: temperament },
       });
+      console.log('esto es lo HA creado', temperamentDb)
       dogCreated.addTemperament(temperamentDb); // se agrega el await para esperar que se encuentren los temperaments
       res.send("El Perrito ha sido creado con exito");
     }
     catch(error){
       console.log("Se presento un error en el Post", error)
     }
-  });
+  }); */
+
+  router.post('/', async (req, res) => {  
+    const {
+      name,
+      height_min,
+      height_max,
+      weight_max,
+      weight_min,
+      life_span,
+      temperament,
+      img,
+      created,
+    } = req.body;
+      const addDogs = await Dog.create({
+      name,
+      height_min,
+      height_max,
+      weight_max,
+      weight_min,
+      life_span,
+      temperament,
+      img,
+      created,
+    })
+
+     
+   const Dogs_Temperament = await Temperament.findAll({
+       where:{name : temperament}
+   })
+   console.log('yo soy temperament del post',Dogs_Temperament)
+   addDogs.addTemperament(Dogs_Temperament)
+
+    res.send('New breeds has been added')
+  }) 
 
 module.exports = router;

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getDogs,filterCreated, OrderByBreeds, OrderByWeigh_Min_to_Max,OrderByWeigh_Max_to_Min,filterByTemperaments} from '../../redux/actions/index.js'
+import { getDogs,filterCreated, OrderByBreeds, OrderByWeigh_Min_to_Max,OrderByWeigh_Max_to_Min,filterByTemperaments, getTemperaments} from '../../redux/actions/index.js'
 import {Link} from "react-router-dom"
 import Card from "../Card/index.jsx";
 import Paginado from "../Paginado/index.jsx";
@@ -16,8 +16,8 @@ export default function Home() {
   const dispatch = useDispatch(); //despachando las acciones
 
   const allDogs = useSelector((state) => state.dogs); //mapstpatoprops
-  const temperaments = useSelector((state) => state.temperaments); //mapstpatoprops
-  console.log('yo soy temperamentos del home vengo del reducer', temperaments)
+  const allTemperaments = useSelector((state) => state.temperaments); //mapstpatoprops
+  console.log('yo soy temperamentos del home vengo del reducer', allTemperaments)
  /*  const [temps, setTemps] = useState('All') */
   const [force, setForce] = useState('');
   const [order, setOrder] = useState('');
@@ -43,6 +43,12 @@ export default function Home() {
   useEffect(() => {
     dispatch(getDogs()); //se pasa la accion
   }, [dispatch]);
+
+/* Para disparar la accion GetTemps , y llenar el estado con los temperamentos*/
+  useEffect(() => {
+    dispatch(getTemperaments()); //se pasa la accion
+  }, [dispatch]);
+
 
 function handleClick(e){
   e.preventDefault();
@@ -107,10 +113,10 @@ return(
             </select>
 
 
-    <select value={temps} onChange={e=>handleTemps(e)}>
+    <select name ="temps"onChange={e=>handleTemps(e)}>
   
         <option value="All">All</option>
-        {temperaments &&temperaments.map(g => <option key={g.name} value={g.name}>{g.name}</option>)}
+         {allTemperaments.map(g => <option key={g.name} value={g.name}>{g.name}</option>)} 
             
          </select>       
           
