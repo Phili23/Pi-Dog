@@ -1,4 +1,3 @@
-
 const axios = require("axios");
 const { API_KEY } = process.env;
 const{Temperament,Dog}=require('../db')
@@ -47,6 +46,7 @@ async function getAllTemperament() {
   res.forEach((el) => {
     if (temperamentSinRepetir.indexOf(el) === -1) {
       temperamentSinRepetir.push(el);
+      
     }
   });
     return temperamentSinRepetir;

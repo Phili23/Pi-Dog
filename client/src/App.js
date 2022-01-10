@@ -12,6 +12,7 @@ function App() {
         <Route exact path="/" component={LadingPage}/>
         <Route path='/home' component={Home}/>
         <Route path='/create' component={DogCreate}/>
+        
          <Route path='/home:id' component={Detail}/> 
       </div>
     

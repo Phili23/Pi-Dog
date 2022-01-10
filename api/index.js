@@ -28,20 +28,29 @@ conn.sync({ force: false }).then(async () => {
   console.log(" Base de datos conectada ");
   // SE PRECARGAN LOS TEMPERAMENTOS EN BASE DE DATOS (DESDE LA API)
  // console.log(" Precargando Temperamentos de API en DB... ");
+ const verificacion=await Temperament.findAll()
+ if(verificacion.length<1){
   let temperamentForAPI = await services.getAllTemperament();
-  //console.log('temperamentos, de la db',temperamentForAPI)
-  // se crea objeto para usar bulkCreate
-  var objTemperamentos = temperamentForAPI
+console.log('yo soy temperament  cargando desde index de Api',temperamentForAPI)
+var objTemperamentos = temperamentForAPI
     .map((e) => {
       return {
         name: e,
       };
     })
     .filter((e) => e.name);
+    
   //Se guardan en BD todos los temperamentos
   await Temperament.bulkCreate(objTemperamentos); //recibe un arreglo con objetos y asigna a mi tabla segun la propiedad el valor
+  console.log(" Base de datos cargada ");
 
+ }else {
   server.listen(3001, () => {
     console.log('Listening at 3001') // eslint-disable-line no-console
   })
+
+ }
+
+  
+  
 })

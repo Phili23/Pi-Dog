@@ -14,84 +14,70 @@ export default function rootReducer(state=initialState,action){
                 dogs:action.payload,
                 allDogs:action.payload
             }
-            case "FILTER_BY_WEIGHT":
-                if(action.payload === 'Asc'){
-                    return{
-                      ...state,
-                      dogs: state.dogs.sort((a,b) => a.weight[0] - b.weight[0])
-                    }
-                  } else if(action.payload === 'Desc') {
-                    return{
-                      ...state,
-                      dogs: state.dogs.sort((a,b) => b.weight[0] - a.weight[0])
-                    } 
-                  } else {
-                      return {
-                        ...state, 
-                        dogs:[...state.dogs].sort((a,b) =>  a.name.localeCompare(b.name))
-                      }
+            case 'ORDER_BREEDS':
+              const orderWeight = action.payload === 'asc' ?
+            
+              state.dogs.sort(function(a, b) {
+                  if(a.name > b.name) {
+                    
+                      return 1;
                   }
+                  if(b.name > a.name) {
+                      return -1;
+                  }
+                  return 0;
+              }) :
+              state.dogs.sort(function(a, b) {
+                  if(a.name > b.name) {
+                      return -1;
+                  }
+                  if(b.name > a.name) {
+                      return 1;
+                  }
+                  return 0;
+              });
+              console.log('yos oy order weig del reducer',orderWeight)
+              return {
+                  ...state,
+                  dogs: orderWeight
+              }
                 case 'FILTER_CREATED':
                     
-             
-                  const createdFilter = action.payload === "created" ? state.allDogs.filter(e => e.created) : 
-                 state.allDogs.filter(e => !e.created) ;
+                  const createdFilter = action.payload === 'Created' ? state.allDogs.filter(i => i.created) : 
+                  state.allDogs.filter(i => !i.created)
                   return {
-                  ...state,
-                  dogs:  action.payload === 'All' ? state.allDogs : createdFilter
+                      ...state,
+                      dogs: action.payload === 'All' ? state.allDogs : createdFilter
                   }
 
-                case 'ORDER_BY_BREEDS':
+                case 'FILTER_BY_TEMPERAMENTS':
+                  /* https://github.com/SebastianDelescabe/PI-Videogames-FT15a/blob/main/client/src/components/Filters/GenreFilter.jsx */
+                 /*  https://github.com/nelsonosorio3/PI-Doggo/blob/b3886666f82fa0d69c3c07bf7fcb860ed8c7020a/client/src/reducer/index.js */
                   
-                  const orderName = action.payload === 'asc' ?
-                  state.dogs.sort(function(a, b) {
-                      if(a.name > b.name) {
-                          return 1;
-                      }
-                      if(b.name > a.name) {
-                          return -1;
-                      }
-                      return 0;
-                  }) :
-                  
-                  state.dogs.sort(function(a, b) {
-                      if(a.name > b.name) {
-                          return -1;
-                      }
-                      if(b.name > a.name) {
-                          return 1;
-                      }
-                      return 0;
-                  });
-                  
-                  return {
-                      ...state,
-                      dogs: orderName
-                  }
                 
-                    case 'ORDER_BY_WEIGHT':
-                      let sortedArrWeight = action.payload === 'asc' ? 
-                      state.dogs.sort(function (a, b){
-                        // let num1 = a.weight_metric.split(" - ");
-                        // let num2 = b.weight_metric.split(" - ");
-                          return b.weight_min - a.weight_min;
-                      }) :
-                      state.dogs.sort(function(a, b){
-                        // let num1 = a.weight_metric.split(" - ");
-                        // let num2 = b.weight_metric.split(" - ");
-                          return a.weight_min - b.weight_min;
-                      })
+                   return{
+                    ...state,
+                    dogs: state.dogs.filter(dogs => dogs?.temperaments?.includes(action.payload.temperament.toLowerCase()))
+                  }
+                  
+                    case 'ORDER_BY_WEIGHT_MIN_TO_MAX':
                       return{
-                      ...state,
-                      dogs: sortedArrWeight
+                        ...state,
+                        dogs: [...state.dogs].sort((element1, element2) => (Number(element1.weight.split("-")[0]) - Number(element2.weight.split("-")[0])) )
                       }
+
+                      case 'ORDER_BY_WEIGHT_MAX_TO_MIN':
+                       return{
+                          ...state,
+                          dogs: [...state.dogs].sort((element1, element2) => (Number(element2.weight.split("-")[0]) - Number(element1.weight.split("-")[0])))
+                        } 
                    case 'GET_NAME_DOGS':
                             return{
                                 ...state,
                                 dogs:action.payload,
                               }
                     case 'GET_TEMPERAMENTS':
-                     
+                     console.log('yo soy el action.payload del reducer',action.payload)
                                 return{
                                     ...state,
                                     temperaments:action.payload,

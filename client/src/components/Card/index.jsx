@@ -19,6 +19,7 @@ export default function Card({id,name, img, temperament,weight_max,weight_min}){
             <h3 className="temperamento:">Temperamento: <br/> {temperament}</h3>
             <h3 className="weight">Weight-Min: <br/> {weight_min}</h3>
             <h3 className="weight">Weight-Max: <br/> {weight_max}</h3>
+            
             </div> 
 </div>
         

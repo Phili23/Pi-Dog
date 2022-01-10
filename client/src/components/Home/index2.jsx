@@ -1,30 +1,22 @@
-import { useState, useEffect } from "react";
+/* import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getDogs,filterCreated, OrderByBreeds, OrderByWeigh_Min_to_Max,OrderByWeigh_Max_to_Min,filterByTemperaments} from '../../redux/actions/index.js'
+import { getDogs,filterCreated, OrderByBreeds, OrderByWeigh,filterByTemperaments} from '../../redux/actions/index.js'
 import {Link} from "react-router-dom"
 import Card from "../Card/index.jsx";
 import Paginado from "../Paginado/index.jsx";
 import SearchBar from '../SearchBar/index'
-
-
-
 import './index.css'
-
 
 
 export default function Home() {
   const dispatch = useDispatch(); //despachando las acciones
-
   const allDogs = useSelector((state) => state.dogs); //mapstpatoprops
-  const temperaments = useSelector((state) => state.temperaments); //mapstpatoprops
-  console.log('yo soy temperamentos del home vengo del reducer', temperaments)
- /*  const [temps, setTemps] = useState('All') */
-  const [force, setForce] = useState('');
-  const [order, setOrder] = useState('');
-  const [temps, setTemps] = useState('All')
-  const [weight, setWeight] = useState('Default')
+  const alltemperaments = useSelector((state) => state.temperament); //mapstpatoprops
+  console.log('yo soy el allTemperaments de home',alltemperaments)
+
   const [currentPage, setCurrentPage]=useState(1)//primer pagina actual
   const[dogsPerPage,setDogsPerPage]=useState(8)//cuantas razas  por pagina 
+  const [order, setOrder] = useState('')
   const indexOfLastDogs = currentPage * dogsPerPage; //15
   const indexOfFirstDogs = indexOfLastDogs - dogsPerPage; //0
   const currentDogs = allDogs.slice(
@@ -34,7 +26,7 @@ export default function Home() {
   /* const length = allDogs?.length; */
   //1-----0------15
   //2-----16-----31
-  const paginado = (pageNumber) => {
+/*   const paginado = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
   
@@ -44,42 +36,42 @@ export default function Home() {
     dispatch(getDogs()); //se pasa la accion
   }, [dispatch]);
 
+
+
+
 function handleClick(e){
   e.preventDefault();
   dispatch(getDogs())
   //se despacha la accion
 }
 
-
-function handleOrderByBreeds(e) {
-  e.preventDefault();
-  dispatch(OrderByBreeds(e.target.value))
-  setOrder(`Ordenado ${e.target.value}`)
-};
-
-
-
 function handleFilterCreated(e) {
   dispatch(filterCreated(e.target.value))
+ 
+};
+
+
+ function handleOrderByBreeds(e) {
+  dispatch( OrderByBreeds(e.target.value))
+  console.log('yo soy orden por raza', OrderByBreeds)
+  setCurrentPage(1);
+        setOrder(`Ordenado ${e.target.value}`)
+    };
+  
+}; 
+
+function handleOrderByWeigh(e) {
+  dispatch( OrderByWeigh(e.target.value))
+  console.log(OrderByWeigh())
   
 };
 
-function handleOrderByWeighTMin(e) {
-  console.log('y ordenado por peso minimo', e.target.value)
-  dispatch( OrderByWeigh_Max_to_Min(e.target.value))
-  e.preventDefault();
-  setWeight(`Ordenado ${e.target.value}`)
-  
-};
-
-function handleTemps(e){
-console.log('yo soy temperamentos, e target.value', e.target.value)
-  setTemps(e.target.value)
+function handleFilterTemperaments(e){
   dispatch(filterByTemperaments(e.target.value))
-
 }
 
-/*https://github.com/any-18/PI-Pokemon/blob/main/client/src/components/Home/index.jsx*/
+
+
 
 return(
   <div>
@@ -92,45 +84,32 @@ return(
                 <option value="asc">Ascendente</option>
                 <option value="desc">Descendente</option>
     </select>
-    <select  onChange={e=> handleOrderByWeighTMin(e)}>
-        <option>Order By Weight_Min:</option>
-        <option value="Default">Default</option>
-                <option value="asc">weight_min</option>
-                
+    <select  onChange={e=> handleOrderByWeigh(e)} >
+        <option>Order By:Weight</option>
+                <option value="asc">Ascendente</option>
+                <option value="desc">Descendente</option>
                 
     </select>
-
     <select onChange={e=>handleFilterCreated(e)}>
-                <option value='All'>All Dogs</option>
-                <option value='Created'>My Dogs</option>
-                <option value='Api'>Api Dogs</option>
-            </select>
-
-
-    <select value={temps} onChange={e=>handleTemps(e)}>
-  
-        <option value="All">All</option>
-        {temperaments &&temperaments.map(g => <option key={g.name} value={g.name}>{g.name}</option>)}
-            
-         </select>       
-          
+        <option>Filter by:  </option>
+                <option value="all">All</option>
+                <option value="created">Created</option>
+                <option value="api">Api</option>
                 
-   
-
-  
-
-
-
-
-     
+    </select>
+    <select >
+        <option>Filter By:Temperament  </option>
+       
+      
+            
+        </select>
     <div>
     <Paginado 
      dogsPerPage={dogsPerPage}
      allDogs={allDogs.length}
     paginado={paginado}/>
 
-    
-     <SearchBar/>   
+     <SearchBar/>    
    
     { currentDogs?.map((el)=>{
        return(
@@ -145,4 +124,4 @@ return(
       </div>
 
 )
-    }
+    } */

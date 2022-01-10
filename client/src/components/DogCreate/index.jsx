@@ -6,14 +6,31 @@ import './index.css'
 
 
 
+function validate(input){
+    let errors={};
+    if(!input.name){
+        errors.name='se requiere un Nombre';
+    }else if(!input.height_min){
+        errors.height_min='se requiere un height_min'
+    }else if (!input.height_max){
+        errors.height_max='se requiere un height_min'
+    }else if(!input.weight_min) {
+        errors.weight_min="se requiere un weight_min"
+    }else if(!input.weight_max){
+        errors.weight_max="se reuiere un weight_max"
+    
+    }
+    return errors
+}
 
 
 export default function DogCreate(){
    const dispatch=useDispatch();
    const history=useHistory()
    const temperaments = useSelector((state) => state.temperaments); 
+   const[errors,setErrors]=useState({})
   
-
+// creando un estado para guardar los estados y randerizar en el form
    const[input, setInput]=useState({
     name:"",
     height_min:"",
@@ -36,14 +53,14 @@ export default function DogCreate(){
    function handleSelectT(e){
     setInput({
         ...input,
-       temperament:[...input.temperament, e.target.value]
+       temperament:[...input.temperament, e.target.value]/// este es el array vacio..le va a concatenar el targe.valu
     })
 
 }
 
 function handleSubmit(e){
    e.preventDefault();
-   console.log(input)
+  /* console.log(input)*/
    dispatch(postDogs(input))
    console.log(postDogs())
    alert("Created Breeds Dogs ")

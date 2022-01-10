@@ -60,17 +60,17 @@ const getApiInfo = async () => {
       const apiInfo = await getApiInfo();
       const dbInfo = await getDbInfo();
       const allInfo = apiInfo.concat(dbInfo);
-      console.log('creados en la base de datos de Dogs',dbInfo)
       return allInfo;
     } catch (error) {
       console.log("Se encontro un error en getAllDogs", error)
     }
   };
 
-
+/***********BUSQUEDA POR NAME y TODAS LAS RAZAS */
 router.get('/',async(req,res)=>{
     try {
         const {name}=req.query;
+        
         const dogsTotal=await getAllDogs();
         if(name){
           let dogsName=await dogsTotal.filter(e=>e.name.toLowerCase().includes(name.toLowerCase()))
@@ -90,7 +90,7 @@ router.get('/',async(req,res)=>{
       });
 
 
-
+/*********************************BUSQUEDA POR id**** */
       router.get('/:id', async(req, res,next) => {
         const { id } = req.params
            try {
@@ -105,6 +105,8 @@ router.get('/',async(req,res)=>{
          }
      })
 
+
+ 
 
      router.post("/", async (req, res) => {
       try{
@@ -143,4 +145,5 @@ router.get('/',async(req,res)=>{
       console.log("Se presento un error en el Post", error)
     }
   });
+
 module.exports = router;
