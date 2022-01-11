@@ -20,7 +20,7 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require("./src/app.js");
 const { conn,Temperament } = require("./src/db.js");
-const services = require("./src/funciones/getTemperaments");
+const temps = require("./src/funciones/getTemperaments");
 
 
 

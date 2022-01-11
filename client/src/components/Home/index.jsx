@@ -85,6 +85,7 @@ function handleOrderByWeigh(e) {
 function handleFilterTemps(e){
 console.log('Temps e target.value', e.target.value)
   dispatch(filterByTemperaments(e.target.value)) 
+  setCurrentPage(1)
   e.preventDefault();
    /* setTemps(`Ordenado ${e.target.value}`)  */
   
@@ -105,9 +106,10 @@ return(
                 <option value="asc">Ascendente</option>
                 <option value="desc">Descendente</option>
     </select>
-    <select  onChange={e=>handleOrderByWeigh(e)}>
+    <select  onChange={e=>handleOrderByWeigh(e)} value={weight}>
         <option>Order By Weight_Max:</option>
         {/* <option value="Default">Default</option> */}
+        <option value="Default">Deafult</option>
                 <option value="asc">weight_min</option>
                 <option value="desc">weight_max</option>
                 

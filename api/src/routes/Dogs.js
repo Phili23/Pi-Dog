@@ -14,8 +14,7 @@ const getApiInfo = async () => {
        return {
         id: e.id,
         name: e.name,
-        height_max:
-        e.height.metric.split(" - ")[1] && e.height.metric.split(" - ")[1],
+        height: e.height.metric.split(" - ")[1] && e.height.metric.split(" - ")[1],
         height_min:
         e.height.metric.split(" - ")[0] && e.height.metric.split(" - ")[0],
         weight_max:
