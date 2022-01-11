@@ -43,6 +43,7 @@ export default function DogCreate(){
    })
 
      function handleChange(e){
+        e.preventDefault();
        setInput({
            ...input,
            [e.target.name]:e.target.value
@@ -51,6 +52,7 @@ export default function DogCreate(){
    }
    
    function handleSelectT(e){
+    e.preventDefault();
     setInput({
         ...input,
        temperament:[...input.temperament, e.target.value]/// este es el array vacio..le va a concatenar el targe.valu
@@ -105,7 +107,7 @@ useEffect(()=>{
             type="number"
             value={input.height_min}
             name='height_min'
-            placeholder='kilogramns..'
+            placeholder='Cms..'
             onChange={(e)=>{handleChange(e)}}/>
             
 
@@ -116,10 +118,8 @@ useEffect(()=>{
             type="number"
             value={input.height_max}
             name='height_max'
-            placeholder='kilogramns..'
+            placeholder='Cms..'
             onChange={(e)=>{handleChange(e)}}/>
-            
-
         </div> 
 
 
@@ -131,8 +131,6 @@ useEffect(()=>{
             name='weight_min'
             placeholder='kilogramns..'
             onChange={(e)=>{handleChange(e)}}/>
-            
-
         </div>
 
         <div>
@@ -143,8 +141,6 @@ useEffect(()=>{
             name='weight_max'
             placeholder='kilogramns..'
             onChange={(e)=>{handleChange(e)}}/>
-            
-
         </div> 
 
         <div>
@@ -155,9 +151,8 @@ useEffect(()=>{
             name='life_span'
             placeholder='Years Life..'
             onChange={(e)=>{handleChange(e)}}/>
-            
+         </div>
 
-        </div>
         <div>
             <label>Image</label>
             <input

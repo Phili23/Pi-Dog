@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getDogs,filterCreated, OrderByBreeds, OrderByWeigh_Min_to_Max,OrderByWeigh_Max_to_Min,filterByTemperaments, getTemperaments} from '../../redux/actions/index.js'
+import { getDogs,filterCreated, OrderByBreeds, OrderByWeigh_Min_to_Max ,OrderByWeigh_Max_to_Min,filterByTemperaments, getTemperaments} from '../../redux/actions/index.js'
 import {Link} from "react-router-dom"
 import Card from "../Card/index.jsx";
 import Paginado from "../Paginado/index.jsx";
@@ -23,6 +23,7 @@ export default function Home() {
   const [order, setOrder] = useState('');
   const [temps, setTemps] = useState('')
   const [weight, setWeight] = useState('')
+  const [weightMax, setWeightMax] = useState('')
   const [currentPage, setCurrentPage]=useState(1)//primer pagina actual
   const[dogsPerPage,setDogsPerPage]=useState(8)//cuantas razas  por pagina 
   const indexOfLastDogs = currentPage * dogsPerPage; //15
@@ -31,7 +32,7 @@ export default function Home() {
     indexOfFirstDogs,
     indexOfLastDogs
   );
-  /* const length = allDogs?.length; */
+   const length = allDogs?.length; 
   //1-----0------15
   //2-----16-----31
   const paginado = (pageNumber) => {
@@ -73,14 +74,35 @@ function handleFilterCreated(e) {
   
 };
 
-function handleOrderByWeigh(e) {
+function handleOrderByWeigh_min(e) {
   console.log('y ordenado por peso minimo', e.target.value)
-  dispatch( OrderByWeigh_Max_to_Min(e.target.value))
+  dispatch(OrderByWeigh_Min_to_Max(e.target.value))
   e.preventDefault();
   setCurrentPage(1)
   setWeight(`Ordenado ${e.target.value}`)
+   const allDogs2 = allDogs.sort((a, b) => {
+    if (Number(a.weight_min) > Number(b.weight_min)) return 1;
+    if (Number(a.weight_min) < Number(b.weight_min)) return -1;
+    return 0;
+  });
+
+}
+
+function handleOrderByWeigh_max(e) {
+  console.log('y ordenado por peso minimo', e.target.value)
+  dispatch(OrderByWeigh_Max_to_Min(e.target.value))
+  e.preventDefault();
+  setCurrentPage(1)
+  setWeightMax(`Ordenado ${e.target.value}`)
+  const allDogs3 = allDogs.sort((b, a) => {
+    if (Number(a.weight_max) > Number(b.weight_max)) return 1;
+    if (Number(a.weight_max) < Number(b.weight_max)) return -1;
+    return 0;
+  });
+
+}
+
   
-};
 
 function handleFilterTemps(e){
 console.log('Temps e target.value', e.target.value)
@@ -88,8 +110,6 @@ console.log('Temps e target.value', e.target.value)
   setCurrentPage(1)
   e.preventDefault();
    /* setTemps(`Ordenado ${e.target.value}`)  */
-  
-  
 }
 
 /*https://github.com/any-18/PI-Pokemon/blob/main/client/src/components/Home/index.jsx*/
@@ -102,21 +122,27 @@ return(
     <button onClick={e=>{handleClick(e)}}>Reload all Dog Breeds</button>
    
     <select onChange={e=> handleOrderByBreeds(e)}>
-        <option>Order By Raza:</option>
+    <option value="x">Order ..By Breeds</option>
                 <option value="asc">Ascendente</option>
                 <option value="desc">Descendente</option>
     </select>
-    <select  onChange={e=>handleOrderByWeigh(e)} value={weight}>
-        <option>Order By Weight_Max:</option>
-        {/* <option value="Default">Default</option> */}
-        <option value="Default">Deafult</option>
-                <option value="asc">weight_min</option>
-                <option value="desc">weight_max</option>
-                
-                
+
+    <select  onChange={e=>handleOrderByWeigh_min(e)} >
+    <option value="x">Order Weight...By Min</option>
+    <option value="weight_min">Weight min</option>
+                 
+    </select>
+
+
+    <select  onChange={e=>handleOrderByWeigh_max(e)} value={weight}>
+  
+       <option value="x">Order Weight..By Max</option>
+        <option value="weight_max">Weight max</option>
+             
     </select>
 
     <select onChange={e=>handleFilterCreated(e)}>
+    <option value='All'>Filter By Origin</option>
                 <option value='All'>All Dogs</option>
                 <option value='created'>My Dogs</option>
                 <option value='Api'>Api Dogs</option>
@@ -124,19 +150,11 @@ return(
 
             {!allTemperaments?<h1>Cargando...</h1>:
     <select /* name ="temperament" */onChange={e=>handleFilterTemps(e)}>
-        <option value='All'>All temep</option>
+        <option value='All'>Filter By Temperaments</option>
           {allTemperaments.sort().map(g => <option key={g.name} value={g.name}>{g.name}</option>)} 
             
          </select>   }
-                
-   
-
-  
-
-
-
-
-     
+            
     <div>
     <Paginado 
      dogsPerPage={dogsPerPage}

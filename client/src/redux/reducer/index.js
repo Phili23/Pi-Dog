@@ -69,37 +69,25 @@ export default function rootReducer(state=initialState,action){
                 ...state,
                 dogs: tempFilter //guardo los dogs filtrados en el estado filtrado, no toco allDogs
               };
-                            
-                  case 'ORDER_BY_WEIGHT_MIN_TO_MAX':
-                    const orderName2 = action.payload === 'asc' ?
-                    state.dogs.sort(function(a, b) {
-                        if(a.name > b.name) {
-                            return 1;
-                        }
-                        if(b.name > a.name) {
-                            return -1;
-                        }
-                        return 0;
-                    }) :
-                    state.dogs.sort(function(a, b) {
-                        if(a.name > b.name) {
-                            return -1;
-                        }
-                        if(b.name > a.name) {
-                            return 1;
-                        }
-                        return 0;
-                    });
-                    return {
+                  
+              
+              /* https://github.com/Keltuzad29/PI-DOGS-FT15A/blob/main/client/src/reducer/index.js */
+     
+                  /* 
+                    case 'ORDER_BY_WEIGHT_MiN_TO_MAX':
+                      return{
                         ...state,
-                        dogs: orderName2
-                    }
+                         dogs:action.payload, 
+                       /*  allDogs:action.payload */
+                
+                      /*  case 'ORDER_BY_WEIGHT_MAX_TO_MIN':
+                  
 
-                    case 'ORDER_BY_WEIGHT_MAX_TO_MIN':
-                     return{
-                        ...state,
-                        dogs: [...state.dogs].reverse((element1, element2) => (Number(element2.weight.split("-")[0]) - Number(element1.weight.split("-")[0])))
-                      } 
+                        return{
+                          ...state,
+                          dogs:action.payload,
+                           /* allDogs:action.payload  
+                      }  */
                  case 'GET_NAME_DOGS':
                           return{
                               ...state,
