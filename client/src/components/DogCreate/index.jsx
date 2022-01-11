@@ -88,12 +88,12 @@ useEffect(()=>{
    return(
        <div>
 
-<Link  to ='/home'><button>Back-Home</button></Link>
+<Link  className='navlink'  to ='/home'><button className='boton'>Back-Home</button></Link>
         <h1>Create Breeds Dogs</h1>
-        <form  className="container" onSubmit={(e)=>{handleSubmit(e)}}>
+        <form  className="form2" onSubmit={(e)=>{handleSubmit(e)}}>
         <div>
             <label>Name</label>
-            <input
+            <input className=''
             type="text"
             value={input.name}
             name="name"
@@ -103,7 +103,7 @@ useEffect(()=>{
 
         <div>
             <label>height_min</label>
-            <input
+            <input className='input2'
             type="number"
             value={input.height_min}
             name='height_min'
@@ -114,7 +114,7 @@ useEffect(()=>{
         </div> 
         <div>
             <label>height_max</label>
-            <input
+            <input className='input'
             type="number"
             value={input.height_max}
             name='height_max'
@@ -125,7 +125,7 @@ useEffect(()=>{
 
         <div>
             <label>Weight_Min</label>
-            <input
+            <input className='input'
             type="number"
             value={input.weight_min}
             name='weight_min'
@@ -135,7 +135,7 @@ useEffect(()=>{
 
         <div>
             <label>Weight_Max</label>
-            <input
+            <input className='input'
             type="number"
             value={input.weight_max}
             name='weight_max'
@@ -145,7 +145,7 @@ useEffect(()=>{
 
         <div>
             <label>Life_Span</label>
-            <input
+            <input className='input'
             type="number"
             value={input.life_span}
             name='life_span'
@@ -164,8 +164,8 @@ useEffect(()=>{
 
         </div>
         <div>
-        <label>Temperaments</label>
-        <select onChange ={(e)=>handleSelectT(e)}>
+        <label className='labelTemp'>Temperaments</label>
+        <select className='select' onChange ={(e)=>handleSelectT(e)}>
             
             {temperaments?.map((temp)=>(
                 <option value={temp.name} key={temp.id} >{temp.name}</option>
@@ -177,7 +177,7 @@ useEffect(()=>{
                     </ul>
         
         </div>
-        <button type='submit'>Created Breeds Dogs</button>
+        <button className='text' type='submit'>Created Breeds Dogs</button>
 
         </form>
        </div>

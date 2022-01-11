@@ -117,8 +117,8 @@ console.log('Temps e target.value', e.target.value)
 return(
   <div>
     <Link  to ='/'><button>Main - Page</button></Link>
-    <Link  to ='/create'><button>Create Dog Breed</button></Link>
-    <h1>DOGS BREEDS</h1>
+    <Link   to ='/create'><button >Create Dog Breed</button></Link>
+    <h1 className="titulo"> DOGS BREEDS</h1>
     <button onClick={e=>{handleClick(e)}}>Reload all Dog Breeds</button>
    
     <select onChange={e=> handleOrderByBreeds(e)}>

@@ -2,9 +2,10 @@ const { Router } = require('express');
 const axios=require('axios')
 const router = Router();
 const{Temperament,Op}=require('../db')
+
 const { API_KEY } = process.env;
 
-  router.get('/', async(req, res,next) => {
+router.get('/', async(req, res,next) => {
     const busca=await Temperament.findAll()
     console.log("YO SOY TEMPERAMENT",busca)
     try {
@@ -17,7 +18,24 @@ const { API_KEY } = process.env;
         } catch (error) {
             next (error)
         }        
-    })  
+    })
+
+  /*  router.get('/', async(req, res,next) => {
+    let array
+    try {
+
+        let temperaments = await Temperament.findAll();
+        console.log('yo soy array', temperaments)
+        if(temperaments){
+            array =  temps.split(',')
+         }
+         console.log('yo soy array', array)
+         res.send(array)
+                    
+      } catch (error) {
+        next("Rompio el get Temperament >  ");
+      }
+    });    */
 
 
 /*      router.get("/", async (req, res)=>{
@@ -79,11 +97,11 @@ const { API_KEY } = process.env;
 }) */
 
 
-/* router.get('/', async(req, res,next) => {
-    let temp = await Temperament.findAll({raw: true, where: { name: {[Op.or]: array } } })
+router.get('/', async(req, res,next) => {
+    let temp = await Temperament.findAll({raw: true, where: { name:{ [Op.like]: `%${temperament}%` } } })
     temp = temp.map(e => e.id)
     return temp
 
-}) */
+}) 
 
   module.exports = router;
