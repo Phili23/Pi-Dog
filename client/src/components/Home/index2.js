@@ -42,7 +42,9 @@ export default function Home() {
   //componentDimount
   //traaer los personajes cundo el componente se monta
   useEffect(() => {
+  
     dispatch(getDogs()); //se pasa la accion
+    console.log("yo soy el console.log de perros randerizados")
   }, [dispatch]);
 
 /* Para disparar la accion GetTemps , y llenar el estado con los temperamentos*/
@@ -53,6 +55,7 @@ export default function Home() {
 
 function handleClick(e){
   e.preventDefault();
+ alert("yo soy el console.log de perros randerizados, del handleclick")
   dispatch(getDogs())
   //se despacha la accion
 }
@@ -73,43 +76,44 @@ function handleFilterCreated(e) {
   setOrder(`Ordenado ${e.target.value}`)
   
 };
-//funcion para ordenar por peso minimo
+
 function handleOrderByWeigh_min(e) {
   console.log('y ordenado por peso minimo', e.target.value)
   dispatch(OrderByWeigh_Min_to_Max(e.target.value))
   e.preventDefault();
   setCurrentPage(1)
-  
+  setWeight(`Ordenado ${e.target.value}`)
    const allDogs2 = allDogs.sort((a, b) => {
     if (Number(a.weight_min) > Number(b.weight_min)) return 1;
     if (Number(a.weight_min) < Number(b.weight_min)) return -1;
     return 0;
   });
-  setWeight(`Ordenado ${e.target.value}`)
+
 }
 
-//funcion para ordenar por peso maximo
 function handleOrderByWeigh_max(e) {
   console.log('y ordenado por peso minimo', e.target.value)
   dispatch(OrderByWeigh_Max_to_Min(e.target.value))
   e.preventDefault();
   setCurrentPage(1)
+  setWeightMax(`Ordenado ${e.target.value}`)
   const allDogs3 = allDogs.sort((b, a) => {
-    if (Number(a.weight_min) > Number(b.weight_min)) return 1;
-    if (Number(a.weight_min) < Number(b.weight_min)) return -1;
+    if (Number(a.weight_max) > Number(b.weight_max)) return 1;
+    if (Number(a.weight_max) < Number(b.weight_max)) return -1;
     return 0;
   });
-  setWeight(`Ordenado ${e.target.value}`)
 
 }
 
   
-// funcion para filtrar por temperamentos
+
 function handleFilterTemps(e){
-console.log('Temps e target.value', e.target.value)
+console.log('Temps e target.value del handleFilterTemps', e.target.value)
+
   dispatch(filterByTemperaments(e.target.value)) 
+  alert("yo soy el console.log de temperaments randerizados, del handlefilkter")
   setCurrentPage(1)
-  
+  e.preventDefault();
    /* setTemps(`Ordenado ${e.target.value}`)  */
 }
 
@@ -123,7 +127,7 @@ return(
     <button onClick={e=>{handleClick(e)}}>Reload all Dog Breeds</button>
    
     <select onChange={e=> handleOrderByBreeds(e)}>
-    <option>Order ..By Breeds</option>
+    <option value="x">Order ..By Breeds</option>
                 <option value="asc">Ascendente</option>
                 <option value="desc">Descendente</option>
     </select>
@@ -137,13 +141,13 @@ return(
 
     <select  onChange={e=>handleOrderByWeigh_max(e)} value={weight}>
   
-       <option  value="x" >Order Weight..By Max</option>
-        <option value="weight_min">Weight max</option>
+       <option value="x">Order Weight..By Max</option>
+        <option value="weight_max">Weight max</option>
              
     </select>
 
     <select onChange={e=>handleFilterCreated(e)}>
-                  <option >Filter By Origin</option>
+    <option value='All'>Filter By Origin</option>
                 <option value='All'>All Dogs</option>
                 <option value='created'>My Dogs</option>
                 <option value='Api'>Api Dogs</option>
@@ -169,7 +173,13 @@ return(
        return(
        <Link to={'/home'+el.id} key={el.id}>
          <div className="card-container ">
-      <Card    name={el.name} img={el.img? el.img:el.image} temperament={el.temperament} weight_min={el.weight_min} weight_max={el.weight_max}/>
+     {/*  <Card    name={el.name} img={el.img? el.img:el.image} temperament={!currentDogs[0].created? el.temperaments: 
+             currentDogs[0].temperaments.map((el)=>el.name).join(' - ')}  weight_min={el.weight_min} weight_max={el.weight_max}/> */}
+          <Card    name={el.name} img={el.img? el.img:el.image}
+             temperament={!currentDogs[0].created? el.temperaments: 
+             el.temperaments.map((el)=>el.name).join(' - ')} 
+             weight_min={el.weight_min}
+             weight_max={el.weight_max}/>
       </div>
       </Link>)
       })}
@@ -179,3 +189,31 @@ return(
 
 )
     }
+/* 
+    <SearchBar    
+    />    
+  <div className="card-container ">
+   { currentDogs?.map((el)=>{
+      return(
+      
+      <Link to={'/home'+el.id} key={el.id}>
+     
+     <Card    name={el.name} 
+     img={el.img? el.img:el.image}
+     temperament={!currentDogs[0].created? currentDogs[0].Temperament + ' ' :currentDogs[0].temperaments.map(el=>el.name+(' '))}
+     weight_min={el.weight_min} 
+      weight_max={el.weight_max}/>
+   
+     </Link>
+
+
+
+     
+            <h3 className="">Temperament: <br/> {temperament} </h3>
+            <span className="">
+            <p > <label>Weight:</label> {weight_min} -   {weight_max}</p>
+            </span>
+            </div> 
+   </div>
+        
+    */

@@ -1,0 +1,45 @@
+.card-container {
+    display: -ms-flex;
+     /*  display: -webkit-flex; */
+      display: grid;
+      border-color: teal;
+      grid-template-columns: auto auto auto;
+  /*     grid-template-rows: repeat(4, 200px); */
+      grid-auto-flow: column; 
+      grid-row-gap: 20px;
+      grid-row: span 4; 
+      padding: 0px 10px 0px 20px;
+
+       
+}
+
+
+.card-container2{
+display: grid;
+grid-template-columns: auto auto auto;
+grid-column-gap: 20px;
+grid-row-gap: 50px;
+padding: 0px 10px 0px 20px;
+
+backdrop-filter:blur(7.5px); 
+
+}
+.titulo{
+  font: bold 60px Verdana, Arial, Helvetica;
+  height: 20%;
+  width: 100%;
+  color:rgb(7, 71, 5);
+  text-transform: uppercase;
+  
+  
+  margin: 0 auto;
+  text-align: center;
+  line-height: 80px;
+
+  
+  text-align: center;
+ 
+  letter-spacing: 1px;
+  word-spacing: 3px;
+ 
+}

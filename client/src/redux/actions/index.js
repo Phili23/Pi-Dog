@@ -4,8 +4,7 @@ export const GET_DOGS="get_dogs"
 export  function getDogs(){
     return async function(dispatch){
         var json=await axios.get('http://localhost:3001/Dogs')
-        
-    
+       
     return dispatch({
         type:'GET_DOGS',
         payload:json.data
@@ -111,4 +110,12 @@ export function getDetail(id){
     console.log(error)
 }
 }
+}
+
+
+export function byOrder(payload) {
+    return {
+        type: 'ORDER_WEIGHT',
+        payload
+    }
 }

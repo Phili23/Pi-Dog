@@ -27,18 +27,27 @@
     box-shadow: 0 0 40px rgb(106, 134, 134) inset;
 }
 
-.body{
-    width: 100vw;
-    height: 100vh;
-    background-image: url('https://sp.depositphotos.com/42451537/stock-photo-group-of-dogs.html');
+body{
+   /*  width: 100vw;
+    height: 500vh;
+    background-image: url('');
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
+    background-position: 10px 30px; */
 }
 
 .principal{
-    display: flex;
+ /*    display: flex;
     flex-direction: column;
     align-items: flex-start;
-    height: 500px;
+    height: 500px; */
 }
+.imgen{
+    /* background-image: url('https://bl3302files.storage.live.com/y4pH6WdZgD-nF4V-1ql5j6bMDpQeUd7Z7tBKWKqVH97-SNQntsTA66sYuBdPZy7fkdg5rYoPbhqAeUV_B34QfIFO7fWPpCwZOcECB_syx0HiRCpA-JHnHdZ28gR9yLS7wqabMXdiky-1gPauAvPsRIKn9ajLpQ0OWrz-X7a70sv1nGYvhPsXY-nIMxv8jut33A54-2PU-Dxd3IcDT2v8QXq98_IHZPldT5hEMkItnzUKM4/IMG0049A.jpg?psid=1&width=640&height=480');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: -10px -30px; */
+}  
+

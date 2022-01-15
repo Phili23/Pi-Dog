@@ -3,21 +3,28 @@ import './Card.css'
 
 
 
-export default function Card({id,name, img, temperament,weight_max,weight_min}){
+export default function Card({id,name, img, temperaments,weight_max,weight_min}){
    
+     {if(!img){
+        img = "https://st3.depositphotos.com/1177973/14743/i/1600/depositphotos_147439097-stock-photo-group-of-cute-dogs.jpg";
+    }} 
+   /*  const temperamento=temperaments.map(el=>el)
+ */
 
     return(
-        <div className="espacio">
+        <div>
+        <div className="">
         
-       <span className="card-container">
-       <span className= "columnas"><img src={img} alt="no se encontró" style={{width: "190px", height: "190px"}} /></span>
+       <span className="">
+       <span className= ""><img src={img} alt="no se encontró" style={{width: "190px", height: "190px"}} /></span>
+      
        <div>  
-           <div className="titulo-dog-container">
-           <h3 className="titulo-card">{name}</h3>
+           <div className="">
+           <h3 className="">{name}</h3>
         {/*  <h3 className="titulo-card">{name}</h3> */}
             
     
-            <h3 className="titulo-temperamentos">Temperamento: <br/> {temperament}</h3>
+        <h3 className="titulo-temperamentos">Temperamento: <br/> {temperaments}</h3>
             <h3 className="weight">Weight-Min: <br/> {weight_min}</h3>
             <h3 className="weight">Weight-Max: <br/> {weight_max}</h3>
             
@@ -26,6 +33,7 @@ export default function Card({id,name, img, temperament,weight_max,weight_min}){
         
         </span>
         
+        </div>
         </div>
     )
 }

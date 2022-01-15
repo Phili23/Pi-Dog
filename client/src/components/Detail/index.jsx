@@ -13,9 +13,9 @@ export default function Detail(props){
    
     dispatch(getDetail(props.match.params.id))
     console.log('yo soy detail de params',props.match.params.id)
-},[dispatch])
+},[])
  
-const myDogs=useSelector((state)=>state.detail)
+const myDogs=useSelector((state)=>state.detail)// mi traigo desde el reducer
 
 return(
     <div>
@@ -27,17 +27,22 @@ return(
             <div>
                 <h1>{myDogs[0].name}</h1>
                  <img src={myDogs[0].img? myDogs[0].img:myDogs[0].img} alt="" width="500px" height="700px"/> 
-                <h5>Min_height:{myDogs[0].height_min}</h5>
-                <h5>Max_height:{myDogs[0].height_max}</h5>
-                <h5>Min_Weight:{myDogs[0].weight_min}</h5>
-                <h5>Max_Weight:{myDogs[0].weight_max}</h5>
-                <h5>Life_Span:{myDogs[0].life_span}</h5>
-              {/*   <h5>Temperaments   :{myDogs[0].temperament}</h5>  */}
-                 <h5>Temperaments: {myDogs[0].created? myDogs[0].temperaments.map(i => i.name + (', ')) : myDogs[0].temperament + ''}</h5>   
-              
+                 <h5>Temperaments:  </h5>  
+                 <h5> {!myDogs[0].created? myDogs[0].Temperament + ' - ' : myDogs[0].temperaments.map(el=>el.name + ('  '))}</h5>   
+                 <h5>Height:     {myDogs[0].height_min} - {myDogs[0].height_max}  </h5>
+                 <h5>Weight:    {myDogs[0].weight_min}  -  {myDogs[0].weight_max}</h5>               
+                 
+                 <h5>Life_Span:  {myDogs[0].life_span}</h5>
+             
+               
            </div>:<p>Loading...</p>
         }
        
+
+
      </div>
 )
 }
+
+/** Temperament localhost */
+/* db ....temperaments*/

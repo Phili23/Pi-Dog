@@ -1,13 +1,30 @@
-.card-container {
-    display: -ms-flex;
-       /*  display: -webkit-flex; */
-        display: flex;
-        border-color: teal;
-        grid-template-rows: repeat(4, 200px);
-        grid-auto-flow: column; 
+.card-container1 {
+   display: -ms-flex; 
+        display: -webkit-flex; 
+        display: flex; 
+        border-color: teal; 
+       grid-template-rows: repeat(4, 5
+        0px); 
+        grid-auto-columns: 100px; 
+         grid-template-rows: 100px 100px 100px;
+         grid-auto-flow: column; 
         grid-row: span 4;
+        display:grid;
+        grid-template-columns: repeat(4, 100px) ;
+        grid-template-rows: repeat(4, 100px);
+
         
    
+    
+}
+.container-cards{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-column-gap: 20px;
+    grid-row-gap: 50px;
+    padding: 0px 10px 0px 20px;
+    justify-content: center;
+    backdrop-filter:blur(7.5px); 
     
 }
 
@@ -28,5 +45,24 @@
    
     letter-spacing: 1px;
     word-spacing: 3px;
-   
+}
+.but{
+    height: 0;
+    margin: 0;
+    margin-top: 0;
+    border-radius: 10px;
+    border-color: teal;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 1px;
+    background-color: transparent;
+    font-size: 1rem;
+    transition: box-shadow 0.2s ease-in-out;
+  }
+
+  .but:hover{
+    /* color: #1883ba;
+    background-color: #fff;
+    border: 16px #1883ba; */
+    box-shadow: 0 0 40px rgb(106, 134, 134) inset;
   }

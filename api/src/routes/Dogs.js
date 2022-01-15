@@ -14,7 +14,7 @@ const getApiInfo = async () => {
        return {
         id: e.id,
         name: e.name,
-        height: e.height.metric.split(" - ")[1] && e.height.metric.split(" - ")[1],
+        heigh_max: e.height.metric.split(" - ")[1] && e.height.metric.split(" - ")[1],
         height_min:
         e.height.metric.split(" - ")[0] && e.height.metric.split(" - ")[0],
         weight_max:
@@ -24,7 +24,7 @@ const getApiInfo = async () => {
           ? e.weight.metric.split(" - ")[0]
           : 6,
          life_span:e.life_span,
-          temperament: e.temperament
+          Temperament: e.temperament
            ? e.temperament
            : " Perrito sin Temperamentos ",
          img: e.image.url,
@@ -165,12 +165,11 @@ router.get('/',async(req,res)=>{
       weight_max,
       weight_min,
       life_span,
-      temperament,
       img,
       created,
     })
 
-     
+    console.log('yo soy temperament del post',temperament) 
    const Dogs_Temperament = await Temperament.findAll({
        where:{name : temperament}
    })

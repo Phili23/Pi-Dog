@@ -8,7 +8,6 @@ const dispatch=useDispatch()
 const[name,setName]=useState("")
 
 function handleInputChange(e){
-e.preventDefault()
  setName(e.target.value)
  console.log(name)
 }
@@ -25,7 +24,7 @@ return(
     placeholder="Buscar..."
     onChange={(e)=>{handleInputChange(e)}}
     />
-    <button type ="submit" onClick={(e)=>{handleSubmit(e)}}>Search...</button>
+    <button type ="submit" onClick={(e)=>{handleSubmit(e)}}>Buscar</button>
     </div>
 )
 }

@@ -17,13 +17,7 @@ function validate(input){
     }else if(!input.weight_min) {
         errors.weight_min="se requiere un weight_min"
     }else if(!input.weight_max){
-        errors.weight_max="se requiere un weight_max"
-      }
-    else if(!input.life_span){
-        errors.life_span="se requiere un weight_max"
-     }
-    else if(!input.temperament){
-        errors.temperament="se requiere un weight_max"
+        errors.weight_max="se reuiere un weight_max"
     
     }
     return errors
@@ -49,25 +43,21 @@ export default function DogCreate(){
    })
 
      function handleChange(e){
-      /*   e.preventDefault(); */
+        e.preventDefault();
        setInput({
            ...input,
-           [e.target.name]:e.target.value,
+           [e.target.name]:e.target.value
        })
 
    }
-   /* de los temperamentos*/
+   
    function handleSelectT(e){
-   e.preventDefault(); 
+    e.preventDefault();
     setInput({
         ...input,
-       temperament:[...input.temperament, e.target.value],/// este es el array vacio..le va a concatenar el targe.valu
+       temperament:[...input.temperament, e.target.value]/// este es el array vacio..le va a concatenar el targe.valu
     })
-    setErrors(validate({
-        ...input,
-        [e.target.name]:e.target.value
-    }))
- console.log(input)
+
 }
 
 function handleSubmit(e){
@@ -86,28 +76,21 @@ function handleSubmit(e){
     temperament:[],
     img:"",
    })
-   history.push('./home')
+   history.push('/home')
 }
 
 useEffect(()=>{
     dispatch(getTemperaments())
+    
 },[dispatch])
-
+/*video1*/
    
-
-function handleDelete(el) {
-     setInput({
-      ...input,
-      temperament: input.temperament.filter((t) => t !== el)     
-    });
-  }
    return(
-    <div className=''>
-       <div className=''>
+       <div>
 
-   <Link  className=''  to ='/home'><button className=''>Back-Home</button></Link>
-        <h1 className=''>Create Breeds Dogs</h1>
-        <form  className="" onSubmit={(e)=>{handleSubmit(e)}}>
+<Link  className='navlink'  to ='/home'><button className='boton'>Back-Home</button></Link>
+        <h1>Create Breeds Dogs</h1>
+        <form  className="form2" onSubmit={(e)=>{handleSubmit(e)}}>
         <div>
             <label>Name</label>
             <input className=''
@@ -116,15 +99,11 @@ function handleDelete(el) {
             name="name"
             placeholder='name'
             onChange={(e)=>{handleChange(e)}}/>
-            {
-               errors.name&&(
-                   <p className=''>{errors.name}</p>
-               ) }
         </div>
 
         <div>
             <label>height_min</label>
-            <input className=''
+            <input className='input2'
             type="number"
             value={input.height_min}
             name='height_min'
@@ -135,7 +114,7 @@ function handleDelete(el) {
         </div> 
         <div>
             <label>height_max</label>
-            <input className=''
+            <input className='input'
             type="number"
             value={input.height_max}
             name='height_max'
@@ -146,7 +125,7 @@ function handleDelete(el) {
 
         <div>
             <label>Weight_Min</label>
-            <input className=''
+            <input className='input'
             type="number"
             value={input.weight_min}
             name='weight_min'
@@ -156,7 +135,7 @@ function handleDelete(el) {
 
         <div>
             <label>Weight_Max</label>
-            <input className=''
+            <input className='input'
             type="number"
             value={input.weight_max}
             name='weight_max'
@@ -166,7 +145,7 @@ function handleDelete(el) {
 
         <div>
             <label>Life_Span</label>
-            <input className=''
+            <input className='input'
             type="number"
             value={input.life_span}
             name='life_span'
@@ -185,31 +164,23 @@ function handleDelete(el) {
 
         </div>
         <div>
-       
-        <label className=''>Temperaments</label>
-        <select className='' onChange ={(e)=>handleSelectT(e)}>
-        <option >All Temperaments</option>
-               {temperaments.map((temp)=>(
+        <label className='labelTemp'>Temperaments</label>
+        <select className='select' onChange ={(e)=>handleSelectT(e)}>
+            
+            {temperaments?.map((temp)=>(
                 <option value={temp.name} key={temp.id} >{temp.name}</option>
             ))}
             
         </select>
-         {/* <ul>  {input.temperament.map((i) => i ).join(" - ")}
-        </ul>  */}
+        <ul>
+                        <li>{input.temperament.map(i => i + ", ")}</li>
+                    </ul>
         
-        </div> 
-        <button className="but" type='submit'>Created Breeds Dogs</button>
-                    
-        </form>
-       
         </div>
-        
-        {input.temperament.map((el) => 
-         <div className="" key={el.id}>
-           <p>{el}</p>
-           <button className="" onClick={() => handleDelete(el)}>X</button>
-         </div>
-       )}
-    </div>     
+        <button className='text' type='submit'>Created Breeds Dogs</button>
+
+        </form>
+       </div>
+       
    )
 }

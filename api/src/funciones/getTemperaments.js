@@ -9,14 +9,23 @@ async function getAllDataAPI() {
   );
   allData = allData.data.map((e) => {
     return {
-          name: e.name,
-         height:e.height,         
-         weight:e.weight,
-         life_span:e.life_span,
-          temperament: e.temperament
-           ? e.temperament
-           : "🐶 Perrito sin Temperamentos 😭",
-         img: e.image.url,
+      id: e.id,
+      name: e.name,
+      height_max:
+      e.height.metric.split(" - ")[1] && e.height.metric.split(" - ")[1],
+      height_min:
+      e.height.metric.split(" - ")[0] && e.height.metric.split(" - ")[0],
+      weight_max:
+      e.weight.metric.split(" - ")[1] && e.weight.metric.split(" - ")[1],
+      weight_min:
+      e.weight.metric.split(" - ")[0] !== "NaN"
+        ? e.weight.metric.split(" - ")[0]
+        : 6,
+       life_span:e.life_span,
+        Temperament: e.temperament
+         ? e.temperament
+         : " Perrito sin Temperamentos ",
+       img: e.image.url,
          created:e.created
     };
   });
