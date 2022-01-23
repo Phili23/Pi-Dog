@@ -1,37 +1,21 @@
 import React,{ useEffect} from 'react'
-import {Link,useParams } from 'react-router-dom'
+import {Link } from 'react-router-dom'
 import { useDispatch, useSelector} from 'react-redux'
-import { getDetail,  reset } from '../../redux/actions';
+import { getDetail } from '../../redux/actions';
 
 export default function Detail(props){
  console.log(props)
  
  const dispatch=useDispatch()
- const {id} = useParams()   //la obtengo con este hook, porquue en el routa de mi App le especifico
-
- function reiniciar() {
-   dispatch(reset());
- }
-
+ 
+ 
  useEffect(()=>{
-   dispatch(getDetail(id));//traigo el estado detail
-},[id, dispatch])
-
-useEffect(()=>{
- return () => console.log("componente desmontado");//traigo el estado detail}
-/* function handleClick(tipo) {
-   reiniciar();
-   dispatch(ordenarVideogamesRating(tipo));*/
- })
-
-
-function handleClick(id) {
-   reiniciar()
-   dispatch(getDetail(id));
- }
+   
+    dispatch(getDetail(props.match.params.id))
+    console.log('yo soy detail de params',props.match.params.id)
+},[])
  
- 
-const myDogs=useSelector((state)=>state.detail)//le traigo desde el reducer
+const myDogs=useSelector((state)=>state.detail)// mi traigo desde el reducer
 
 return(
    
@@ -67,33 +51,12 @@ return(
         <br/>
         <Link to='/home'>
            
-           <button className='butt'  onClick={ handleClick(reset)} >Go to Home</button>
+           <button className='butt'>Go to Home</button>
         </Link> 
         
      </div>
 )
 }
 
-
-/******Correción PI  Maria
-Viernes, 21 de enero · 3:30 – 4:00pm
-Información para unirse a Google Meet
-Enlace a la videollamada: https://meet.google.com/mfk-xygq-xyr
-O marca el: ‪(CO) +57 601 8956250‬ PIN: ‪476 804 209 4891‬#
-Más números de teléfono: https://tel.meet/mfk-xygq-xyr?pin=4768042094891 */
-
 /** Temperament localhost */
 /* db ....temperaments*/
-
-
-/* 
-const [categories, setCategories] = useState([])
-const [showFixed, setShowFixed] = useState(false)
-
-useEffect(function () {
-  window.fetch('https://petgram-server.midudev.now.sh/categories')
-    .then(res => res.json())
-    .then(response => {
-      setCategories(response)
-    })
-}, []) */

@@ -9,16 +9,22 @@ export default function Paginado({dogsPerPage, allDogs, paginado}){
        pageNumbers.push(i);
    }
    return(
-       <nav  >
-            <ul className='' >
-               { pageNumbers && 
+       
+           <div className="pagination" >
+            <ul className='ul' >
+                           { pageNumbers && 
                pageNumbers.map(number=>(
-                   <li key={number}>
-                <button className=".pag-btn:hover" onClick={()=> paginado(number)}>{number}</button>
+                   <span key={number}>
+
+                                     
+                <button className="button" onClick={()=> paginado(number)}>{number}</button>
+                             
                
-                </li>
+                </span>
+                
                ))}
            </ul>
-       </nav>
+           </div>
+    
    ) 
 }

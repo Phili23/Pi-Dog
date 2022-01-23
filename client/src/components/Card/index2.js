@@ -13,11 +13,11 @@ export default function Card({id,name, img, temperament,weight_max,weight_min}){
    return(
     <div className="espacio">
     
-    <span className="card-container">
+    <span className="card-containers">
    <span className= "columnas"><img src={img} alt="no se encontró" style={{width: "190px", height: "190px"}} /> </span>
    <div>  
-       <div className="titulo-dog-container">
-       <h3 className="titulo-card">{name}</h3>
+       <div className="name">
+       <h3 className="titulo">{name}</h3>
     {/*  <h3 className="titulo-card">{name}</h3> */}
         
 

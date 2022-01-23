@@ -1,53 +1,67 @@
-.h1{
-    color: cornsilk;
-    margin-top: 60px;
-    margin-left: 80px;
-    font-size: 60px;
-    position: center;
+.hladingp{
+  color: cornsilk;
+  /* margin-top: 60px;
+  margin-left: 80px; */
+  font-size: 60px;
+
+  margin-top: 110px;
+  margin-left: 0px;
+  font-size: 60px;
+  position: center;
 }
 
-.but{
-    height: 40px;
-    margin: 110px;
-    margin-top: 250px;
-    border-radius: 10px;
-    border-color: teal;
-    color: #ffffff;
-    cursor: pointer;
-    padding: 10px;
-    background-color: transparent;
-    font-size: 1rem;
-    transition: box-shadow 0.2s ease-in-out;
+
+
+.hladingp:hover{
+  /* color: #1883ba;
+  background-color: #fff;
+  border: 16px #1883ba; */
+ /*  box-shadow: 0 0 40px rgb(106, 134, 134) inset; */
+ box-shadow: 0 0 40px teal inset
+ 
+}
+.buts{
+  height: 40px;
+  margin-left: 980px;
+  margin-top: 0px;
+  border-radius: 10px;
+  border-color: teal;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 32px;
+  background-color: transparent;
+  font-size: 1.5rem;
+  transition: box-shadow 0.2s ease-in-out;
+  padding:10px;
+  
 }
 
 .but:hover{
-    /* color: #1883ba;
-    background-color: #fff;
-    border: 16px #1883ba; */
-    box-shadow: 0 0 40px rgb(106, 134, 134) inset;
+  /* color: #1883ba;
+  background-color: #fff;
+  border: 16px #1883ba; */
+  box-shadow: 0 0 40px rgb(106, 134, 134) inset;
 }
 
 body{
-   /*  width: 100vw;
-    height: 500vh;
-    background-image: url('');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: 10px 30px; */
+  
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 .principal{
- /*    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    height: 500px; */
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('https://image.freepik.com/foto-gratis/retrato-perro-labrador-marron_155003-2335.jpg') ; 
+  flex-direction: column;
+  align-items: flex-start;
+  height: 500px;
 }
-.imgen{
-    /* background-image: url('https://bl3302files.storage.live.com/y4pH6WdZgD-nF4V-1ql5j6bMDpQeUd7Z7tBKWKqVH97-SNQntsTA66sYuBdPZy7fkdg5rYoPbhqAeUV_B34QfIFO7fWPpCwZOcECB_syx0HiRCpA-JHnHdZ28gR9yLS7wqabMXdiky-1gPauAvPsRIKn9ajLpQ0OWrz-X7a70sv1nGYvhPsXY-nIMxv8jut33A54-2PU-Dxd3IcDT2v8QXq98_IHZPldT5hEMkItnzUKM4/IMG0049A.jpg?psid=1&width=640&height=480');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: -10px -30px; */
-}  
-
+.ptexto{
+  font-size: 16px;
+  color:white;
+  text-align: justify;
+  top:120px;
+}

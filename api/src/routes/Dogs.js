@@ -16,14 +16,14 @@ const getApiInfo = async () => {
         name: e.name,
         heigh_max: e.height.metric.split(" - ")[1] && e.height.metric.split(" - ")[1],
         height_min:
-        e.height.metric.split(" - ")[0] && e.height.metric.split(" - ")[0],
+        e.height.metric.split(" - ")[0] && e.height.metric.split(" - ")[0],//me devuelve un array de string
         weight_max:
         e.weight.metric.split(" - ")[1] && e.weight.metric.split(" - ")[1],
         weight_min:
         e.weight.metric.split(" - ")[0] !== "NaN"
           ? e.weight.metric.split(" - ")[0]
           : 6,
-         life_span:e.life_span,
+          life_span:e.life_span, 
           Temperament: e.temperament
            ? e.temperament
            : " Perrito sin Temperamentos ",
@@ -54,6 +54,8 @@ const getApiInfo = async () => {
     }
   };
 
+
+  // aqui la informacion de todos las razas
   const getAllDogs = async () => {
     try {
       const apiInfo = await getApiInfo();
@@ -104,48 +106,46 @@ router.get('/',async(req,res)=>{
          }
      })
 
+//RUTA PARA EDITAR
+/* router.post('/delete/:name', async (req, res) => {
 
+
+} *//* 
  
+     router.post('/delete/:name', async (req, res) => {
+      const { name } = req.params;
+      console.log('Delete de: ', name)
+      try {
+       const elem = await Dog.destroy({
+          where: {name: `${name}`}
+       });
+      } catch (error) {
+          res.send(`Error in route /videogames/delete ${error}`);
+      }
+      res.send('Videogame has been deleted');
+    }); */
 
-   /*   router.post("/", async (req, res) => {
-      try{
-    
-        
-      const {
-        name,
-        height_min,
-        height_max,
-        weight_max,
-        weight_min,
-        life_span,
-        temperament,
-        img,
-        created,
-      } = req.body;
-    
-      let dogCreated = await Dog.create({
-        name,
-        height_min,
-        height_max,
-        weight_min,
-        weight_max,
-        life_span,
-        img,
-        created,
-      });
-   
-      let temperamentDb = await Temperament.findAll({
-        where: { name: temperament },
-      });
-      console.log('esto es lo HA creado', temperamentDb)
-      dogCreated.addTemperament(temperamentDb); // se agrega el await para esperar que se encuentren los temperaments
-      res.send("El Perrito ha sido creado con exito");
-    }
-    catch(error){
-      console.log("Se presento un error en el Post", error)
-    }
-  }); */
 
+/*eliminar una raza de la base dtos*/
+    router.delete('/delete/:id', async (req, res) => {
+      const { id } = req.params;
+      console.log('Delete de: ', id)
+      try {
+         if(id){
+         const allDog = await Dog.destroy({
+          where: {id:id}
+       })
+       res.send('eliminado de la base de datos')
+      }
+      } catch (error) {
+          res.send(`Error in route /Dog/delete ${error}`);
+      }
+     
+    });
+
+
+
+/*agregando una raza*/
   router.post('/', async (req, res) => {  
     const {
       name,
@@ -169,11 +169,11 @@ router.get('/',async(req,res)=>{
       created,
     })
 
-    console.log('yo soy temperament del post',temperament) 
+     
    const Dogs_Temperament = await Temperament.findAll({
        where:{name : temperament}
    })
-   console.log('yo soy temperament del post',Dogs_Temperament)
+   
    addDogs.addTemperament(Dogs_Temperament)
 
     res.send('New breeds has been added')

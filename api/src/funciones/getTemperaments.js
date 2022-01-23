@@ -2,6 +2,8 @@ const axios = require("axios");
 const { API_KEY } = process.env;
 const{Temperament,Dog}=require('../db')
 
+
+//mapeo para que solo me venga la info que necesito de la Api y formateo para que lleguen
 async function getAllDataAPI() {
   // Trae toda la data
   let allData = await axios.get(
@@ -12,11 +14,11 @@ async function getAllDataAPI() {
       id: e.id,
       name: e.name,
       height_max:
-      e.height.metric.split(" - ")[1] && e.height.metric.split(" - ")[1],
+      e.height.metric.split(" - ")[1] && e.height.metric.split(" - ")[1],//convierto height en un array
       height_min:
       e.height.metric.split(" - ")[0] && e.height.metric.split(" - ")[0],
       weight_max:
-      e.weight.metric.split(" - ")[1] && e.weight.metric.split(" - ")[1],
+      e.weight.metric.split(" - ")[1] && e.weight.metric.split(" - ")[1],//convierto weight en un array
       weight_min:
       e.weight.metric.split(" - ")[0] !== "NaN"
         ? e.weight.metric.split(" - ")[0]
@@ -36,30 +38,28 @@ async function getAllDataAPI() {
 
 async function getAllTemperament() {
   // devuelvo solo los temperamentos
-  let allData = await getAllDataAPI();
+  let allData = await getAllDataAPI();//recibo los temperamentos desde la api
   let temperamentList = allData.map((el) => {
     return el.temperament;
   });
 
-  let procesado = temperamentList
-    .map((el) => {
+  let tempsList= temperamentList.map((el) => {
       if (el == null) return "";
-
-      return el.split(", ");
+          return el.split(", ");//devueelve un solo array con todos los elementos
     })
     .flat();
 
-  let res = procesado.sort();
+  let res = tempsList.sort();
 
-  let temperamentSinRepetir = [];
+  let temperamentDobles = [];
 
-  res.forEach((el) => {
-    if (temperamentSinRepetir.indexOf(el) === -1) {
-      temperamentSinRepetir.push(el);
+  res.forEach((el) => {//seleccionando  los que estan repetidos
+    if (temperamentDobles.indexOf(el) === -1) {
+      temperamentDobles.push(el);
       
     }
   });
-    return temperamentSinRepetir;
+    return temperamentDobles;
 }
 
 

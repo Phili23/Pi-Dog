@@ -1,0 +1,13 @@
+.titulos{
+    border-radius:4px;
+        text-decoration:none;
+    color:black;
+    font-family:'century Gothic', sans-serif;
+    font-weight:bold;
+    border:1px solid;
+    padding: 2px 8px;
+   
+  }
+  .titulos:hover{
+    color: teal;
+}

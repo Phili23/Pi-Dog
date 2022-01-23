@@ -4,6 +4,7 @@ import LadingPage from './components/LadingPage/index.jsx'
 import Home from './components/Home/index.jsx';
 import DogCreate from './components/DogCreate/index.jsx'
 import Detail from './components/Detail';
+import DeleteDog from './components/DeleteDog';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route exact path="/" component={LadingPage}/>
         <Route path='/home' component={Home}/>
         <Route path='/create' component={DogCreate}/>
+         <Route path='/delete' component={DeleteDog}/> 
         
          <Route path='/home:id' component={Detail}/> 
       </div>

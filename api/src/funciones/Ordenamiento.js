@@ -3,6 +3,8 @@ const { API_KEY } = process.env;
 const{Temperament,Dog}=require('../db')
 const{getAllTemperament}=require('../funciones/getTemperaments')
 
+
+//mapeo para que solo me venga la info que necesito de la Api
 async function getAllDataAPI() {
   // Trae toda la data
   let allData = await axios.get(
@@ -27,7 +29,7 @@ async function getAllDataAPI() {
 
 
 async function getAllTemperament() {
-  // devuelvo solo los temperamentos
+  // devuelvo solo los temperamentos y los convierto en array
   let allData = await getAllDataAPI();
   let temperamentList = allData.map((el) => {
     return el.temperament;
@@ -54,8 +56,8 @@ async function getAllTemperament() {
     return temperamentSinRepetir;
 }
 
-
-const bubbleSort = arr => {
+//filtro por peso minimo
+const weightSort = arr => {
     let allData = await getAllDataAPI();
     let temperamentList = allData.map((el) => {
         return{
